@@ -1,6 +1,0 @@
-Manjaro installé comme suit :
-- Swap manuel de 10 Go
-- Partition Boot EFI de 2 Go en FAT 32 et drapeau boot
-- Partition système / de 200 Go en btrfs
-- Partition /home de 600 Go pour les utilisateurs et les dossiers compatdata en btrfs
-- Partition /mnt/steam de 1000 Go, possédée par root:SteamGroup, en btrfs
