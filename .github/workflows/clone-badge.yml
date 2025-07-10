@@ -1,0 +1,20 @@
+name: Update Clone Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # tous les jours à minuit
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Update clone badge
+        uses: MShawon/github-clone-count-badge@master
+        with:
+          GIST_ID: 520a3a5429dafb951b4ba4ff530ff1c0
+        env:
+          GH_TOKEN: ${{ secrets.CLONE_BADGE_TOKEN }}
