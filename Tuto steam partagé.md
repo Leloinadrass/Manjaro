@@ -1,4 +1,4 @@
-#Créer et partager une partition Steam pour plusieurs utilisateurs sur un même PC.
+# Créer et partager une partition Steam pour plusieurs utilisateurs sur un même PC.
 
 Je pars du principe que vous avez les mêmes partitions que moi, et je vous renvoie à mon document "Partitions Manjaro Familial"
 
@@ -125,6 +125,6 @@ Evidemment, rendre le script exécutable :
 
 Si ça a fonctionné, vous avez le premier utilisateur de prêt.
 
-##Petits soucis possibles :
+## Petits soucis possibles :
 - nécessité de relancer la commande `sudo chown -R :SteamGroup /mnt/steam/SteamLibrary` pour s'assurer que tout le monde y a bien accès.
 - Penser à vérifier que l'utilisateur possède bien un dossier protonfixes (étape 8)
