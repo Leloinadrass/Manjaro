@@ -1,4 +1,6 @@
-Avec les partitions précédemment explicitées.
+#Créer et partager une partition Steam pour plusieurs utilisateurs sur un même PC.
+
+Je pars du principe que vous avez les mêmes partitions que moi, et je vous renvoie à mon document "Partitions Manjaro Familial"
 
 pour trois utilisateurs : user1 user2 et user3
 
@@ -9,7 +11,7 @@ sudo usermod -aG SteamGroup user1
 sudo usermod -aG SteamGroup user2
 sudo usermod -aG SteamGroup user3
 ```
-(can also use `sudo gpasswd -a user1 SteamGroup` )
+(on peut aussi utiliser `sudo gpasswd -a user1 SteamGroup` )
 
 2. Installer Steam avec l'utilisateur user1
 - Configurer la langue, quitter steam
