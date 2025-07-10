@@ -1,6 +1,6 @@
 # Manjaro
 
-![GitHub clones](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Leloinadrass/520a3a5429dafb951b4ba4ff530ff1c0/raw/clone.json)
+![GitHub clones](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Leloinadrass/520a3a5429dafb951b4ba4ff530ff1c0/raw/clone-badge.json)
 
 
 
