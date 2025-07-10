@@ -21,27 +21,31 @@ sudo usermod -aG SteamGroup user3
 Redémarrer Steam.
 
 5. Créer une librairie Steam sur la partition partagée.
-Démarrer Steam, menu `Steam`, `paramètres`, `Stockage`
-Par défaut c'est sur /home. Cliquer dessus et `ajouter un disque`. Sélectionner /mnt/steam .
+Démarrer Steam si nécessaire, menu `Steam`, `paramètres`, `Stockage`
+Par défaut c'est sur `/home`. Cliquer dessus et `ajouter un disque`. Sélectionner  `/mnt/steam` .
 Sélectionner la nouvelle bibliothèque, cliquer sur les 3 petits points (`paramètres`) et `définir par défaut`.
 
 6. Installer un petit jeu non natif linux, le lancer. Le dossier `compatdata` va être créé avec l'identifiant du jeu dedans.
-Supprimer ce dossier. Si si.
+Supprimer ce dossier. Si si. (commande `rm -rf /mnt/steam/SteamLibrary/steamapps/compatdata` ou suppression dans Dolphin/nemo/nautilus)
 
 7. Créer un dossier `compatdata` dans l'utilisateur local. Par exemple :
 ```mkdir -p /home/user1/.steam/steam/steamapps/compatdata```
 
 8. Créer un dossier protonfixe (Normalement inutile pour le premier utilisateur, mais indispensable pour les autres.)
-```mkdir -p /home/user1/.config/protonfixes
-chown user1:user1 /home/user1/.config/protonfixes```
+```
+mkdir -p /home/user1/.config/protonfixes
+chown user1:user1 /home/user1/.config/protonfixes
+```
 
 La ligne `chown` permet, si le dossier a été créé en ligne de commande via l'utilisateur root 
 (utile pour créer des dossiers dans le /home des autres utilisateurs), de redonner la possession du dossier à l'utilisateur,
 sinon, il ne pourra pas l'utiliser.
 
 9. déclarer le dossier SteamLibrary et le protonfixes_test.log comme modifiables par le groupe SteamGroup
-```sudo chmod 775 /tmp/protonfixes_test.log
-sudo chmod -R 775 /mnt/steam/SteamLibrary```
+```
+sudo chmod 775 /tmp/protonfixes_test.log
+sudo chmod -R 775 /mnt/steam/SteamLibrary
+```
 
 10. Créer un script qui va créer un lien symbolique entre /mnt/steam/SteamLibrary/steamapps/compatdata et 
 /home/user1/.steam/steam/steamapps/compatdata.
@@ -65,5 +69,60 @@ fi
 # Créer le lien symbolique vers le dossier personnel
 ln -s "$USER_COMPATDATA" "$SHARED_COMPATDATA"
 ```
+Il faut rendre ce script exécutable : `chmod +x /home/user1/.config/scripts/script_steam_symlink.sh`
 
-A finir...
+11. Permettre au script de démarrer à l'ouverture de session avec un raccourci dans autostart.
+
+`nano /home/melgrin/.config/autostart/Steam_Symlink.desktop`
+
+puis copier :
+```
+[Desktop Entry]
+Type=Application
+Exec=/home/user1/.config/scripts/script_steam_symlink.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Compatdata Symlink
+Comment=Crée un lien symbolique pour compatdata
+X-KDE-AutostartScript=true
+```
+
+12. Ecrire un script qui supprime le lien symbolique à la fin de la session, pour qu'une autre session puisse faire le sien.
+Il doit être placé dans `~/.config/plasma-workspace/shutdown/`. Si ce dossier n'existe pas, il faut le créer.
+
+`mkdir -p /home/user1/.config/plasma-workspace` puis `mkdir -p /home/user1/.config/plasma-workspace/shutdown` .
+
+ensuite `nano /home/user1/.config/plasma-workspace/shutdown/cleanup_steam_symlink.sh`
+
+et insérer :
+```
+#!/bin/bash
+
+SHARED_COMPATDATA="/mnt/steam/SteamLibrary/steamapps/compatdata"
+
+# Supprimer le lien symbolique s'il pointe vers le dossier de l'utilisateur
+if [ -L "$SHARED_COMPATDATA" ]; then
+    LINK_TARGET=$(readlink "$SHARED_COMPATDATA")
+    if [[ "$LINK_TARGET" == "/home/$USER/"* ]]; then
+        rm "$SHARED_COMPATDATA"
+    fi
+fi
+
+
+```
+Evidemment, rendre le script exécutable :
+`chmod +x /home/user1/.config/plasma-workspace/shutdown/cleanup_steam_symlink.sh`
+
+
+14. Tester.
+
+À ce stade, le script n'est réalisé que pour l'utilisateur "user1". Si les 2 autres utilisateurs existent, on peut vérifier si ça marche.
+ - Connecter user1, vérifier que le dossier `/mnt/steam/SteamLibrary/steamapps/compatdata` est bien un lien symbolique et qu'il contient bien les dossiers du joueur pour le jeu de test. (quite à relancer le jeu en question pour que les dossiers se créent).
+ - Déconnecter user1, connecter user2. Vérifier qu'il n'y a pas de lien symbolique dans  `/mnt/steam/SteamLibrary/steamapps/`
+
+Si ça a fonctionné, vous avez le premier utilisateur de prêt.
+
+##Petits soucis possibles :
+- nécessité de relancer la commande `sudo chown -R :SteamGroup /mnt/steam/SteamLibrary` pour s'assurer que tout le monde y a bien accès.
+- Penser à vérifier que l'utilisateur possède bien un dossier protonfixes (étape 8)
