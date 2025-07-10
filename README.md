@@ -1,6 +1,6 @@
 # Manjaro
 
-![GitHub clones](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Leloinadrass/520a3a5429dafb951b4ba4ff530ff1c0/raw/cloneCount.json)
+![GitHub clones](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Leloinadrass/520a3a5429dafb951b4ba4ff530ff1c0/raw/cloneCount.json)    ![Visitors](https://api.visitorbadge.io/api/combined?path=Leloinadrass%2FManjaro&label=Visiteurs&countColor=%2337d67a&style=plastic)
 
 
 
