@@ -14,6 +14,7 @@ Fait :
 - Mise en garde sur le mot de passe à l'installation
 - Mise en garde relative aux dispositions clavier pour la reconnaissance des touches é ; è et ç dans les jeux sous linux
 - Méthode d'installation de l'imprimante multifonction Brother DCP-J1050DW
-- Package à installer pour bénéficier du scanner de l'imprimante Brother.
+- Package à installer pour bénéficier du scanner de l'imprimante Brother.*
+- Modification des règles sudoers pour ne plus avoir de problèmes d'autorisation en écriture sur les fichiers Steam pour les différents utilisateurs.
 
 
