@@ -8,10 +8,10 @@ Ce github inclut un TUTO pour permettre d'avoir plusieurs comptes utilisateurs s
 Chaque utilisateur a donc son propre /home, peut utiliser la bibliothèque partagée steam, sans pour autant voir les comptes steam des autres utilisateurs, et en sachant que ses sauvegardes sont dans des dossiers non visibles par les autres utilisateurs.
 
 Voir les fichiers suivants :
-1. Partitions Manjaro Familial : contient les informations pour l'installation de la distribution Manjaro avec le choix des partitions.
-2. Tuto Steam Partagé : toutes les infos et les scripts pour que Steam puisse fonctionner avec plusieurs utilisateurs sans avoir de conflit. Mais nécessite encore une saisie régulière de commandes lors des bugs de permissions.
-3. Points de vigilance : Jouer sur linux avec un clavier français (par exemple) nécessite des petites manip' pour contourner le problème.
-4. Aller plus loin : sudoers : Permet de finir d'automatiser l'installation multi-utilisateurs de façons à ce que la commande qui donne à tout le groupe Steam de modifier le dossier SteamLibrary soit lancé à chaque fin de session.
+[1. Partitions Manjaro Familial :](https://github.com/Leloinadrass/Manjaro/blob/main/1.%20Partitions%20Manjaro%20Familial.md) contient les informations pour l'installation de la distribution Manjaro avec le choix des partitions.
+[2. Tuto Steam Partagé :](https://github.com/Leloinadrass/Manjaro/blob/main/2.%20Tuto%20steam%20partag%C3%A9.md) toutes les infos et les scripts pour que Steam puisse fonctionner avec plusieurs utilisateurs sans avoir de conflit. Mais nécessite encore une saisie régulière de commandes lors des bugs de permissions.
+[3. Points de vigilance :](https://github.com/Leloinadrass/Manjaro/blob/main/3.%20Points%20de%20vigilance.md) Jouer sur linux avec un clavier français (par exemple) nécessite des petites manip' pour contourner le problème.
+[4. Aller plus loin : sudoers :](https://github.com/Leloinadrass/Manjaro/blob/main/4.%20Aller%20plus%20loin%20%3A%20sudoers.md) Permet de finir d'automatiser l'installation multi-utilisateurs de façons à ce que la commande qui donne à tout le groupe Steam de modifier le dossier SteamLibrary soit lancé à chaque fin de session.
 
 
 
